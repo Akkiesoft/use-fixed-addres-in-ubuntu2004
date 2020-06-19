@@ -1,0 +1,20 @@
+network:
+    ethernets:
+        eth0:
+            dhcp4: no
+            addresses:
+{% for i in addresses %}
+            - {{ i }}
+{% endfor %}
+            gateway4: {{ gateway }}
+            nameservers:
+              addresses:
+{% for i in dns_addresses %}
+              - {{ i }}
+{% endfor %}
+              search:
+{% for i in dns_search %}
+              - {{ i }}
+{% endfor %}
+            optional: true
+    version: 2

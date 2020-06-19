@@ -1,0 +1,14 @@
+- hosts: all
+  gather_facts: no
+  become: yes
+  tasks:
+  - name: disable cloud-init network-config
+    copy:
+      content: "network: {config: disabled}"
+      dest: /etc/cloud/cloud.cfg.d/99-disable-network-config.cfg
+  - name: copy netplan config
+    template:
+      src: 90-manual.yaml
+      dest: /etc/netplan/90-manual.yaml
+  - name: run netplan apply
+    command: netplan apply

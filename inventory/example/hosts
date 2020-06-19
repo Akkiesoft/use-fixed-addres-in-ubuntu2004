@@ -1,0 +1,6 @@
+[all]
+sample.local
+192.168.1.123
+
+[all:vars]
+ansible_user=ubuntu
